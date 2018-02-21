@@ -1,0 +1,15 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Image:</strong>
+  <%= @code.image %>
+</p>
+<p>
+  <%= @code.created_at.to_formatted_s(:long_ordinal) %>
+</p>
+  <%# image_tag @code.image.url %>
+  <%= image_tag @code.image.cropped.url %>
+
+
+<%= link_to 'Edit', edit_code_path(@code) %> |
+<%= link_to 'Back', codes_path %>

@@ -1,0 +1,18 @@
+<h1>UW Bridges Ad Creator</h1>
+
+<h3>Most Recent QR Code Images</h3>
+
+<div class="row qr-images">
+  <% @codeimages.each do |ci| %>
+    <div class="col-sm-1">
+      <p><%= image_tag ci.image.cropped, class: "qr-image" %></p>
+      <p><%= (Time.now.to_date - ci.created_at.to_date).to_i %> Days Old</p>
+      <p><%= link_to "Merge this one", merged_code_url(ci) %></p>
+    </div>
+  <% end %>
+</div>
+
+<h3>Most Recent Base Image</h3>
+<div class="col-sm-12">
+  <%= image_tag @baseimage.image, class: "base-image" %>
+</div>
