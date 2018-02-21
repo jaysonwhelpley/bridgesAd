@@ -1,6 +1,5 @@
 require 'carrierwave/orm/activerecord'
-config.fog_provider = 'fog/aws'
-
+require 'fog/aws'
 
 if Rails.env.production?
   CarrierWave.configure do |config|
