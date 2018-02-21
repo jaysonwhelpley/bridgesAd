@@ -65,7 +65,7 @@ class CodesController < ApplicationController
     @code = Code.find(params[:id]).image.cropped
     @baseimage = Base.last
 
-    newimage = MiniMagick::Image.open(@code.url)
+    newimage = MiniMagick::Image.open(root_url + @code.url)
 
   end
 
