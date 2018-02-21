@@ -39,7 +39,7 @@ gem 'jbuilder', '~> 2.5'
 gem "mini_magick"
 gem 'carrierwave', '~> 1.0'
 
-gem 'fog-aws'
+# gem 'fog-aws'
 
 
 group :development, :test do
