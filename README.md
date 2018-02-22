@@ -1,24 +1,13 @@
-# README
+# Rails Image Compositing for Custom WeChat Ad
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+The client is a university ministry that needs a WeChat ad created with a new QR code. As WeChat QR codes expire every 7 days, he needed to be able to recreate them that often.
 
-Things you may want to cover:
+I was able to put together a script in ImageMagick, that I could run from my terminal, but I was unwilling to run it for him every week. The client wasn't savvy enough to run it himself in Terminal, so I created a rails project using CarrierWave and MiniMagick to upload two images:
 
-* Ruby version
+* a Base image (located at /public/uploads/base/image/1/BaseImage.jpg)
 
-* System dependencies
+* a WeChat QR Code image (example located at /public/uploads/code/image/1/qr_edited.png )
 
-* Configuration
+The user can upload a new QR Code image each week (or more or less often). The MiniMagick script crops the QR image own, rotates it, shrinks it and places it in the proper location on the PostIt on the bottom right, along with a darken filter.
 
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+Since most of these images are single-use. The app will delete old Code images when new ones are uploaded.
