@@ -1,6 +1,6 @@
 class PagesController < ApplicationController
   def main
     @baseimage = Base.last
-    @codeimages = Code.all
+    @codeimage = Code.last
   end
 end

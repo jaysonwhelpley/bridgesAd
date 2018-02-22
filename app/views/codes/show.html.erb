@@ -8,7 +8,12 @@
   <%= @code.created_at.to_formatted_s(:long_ordinal) %>
 </p>
   <%# image_tag @code.image.url %>
-  <%= image_tag @code.image.cropped.url %>
+
+<div class="row">
+  <div class="col-sm-8">
+    <%= image_tag @code.image.composite.url, class: "col-sm-12"%>
+  </div>
+</div>
 
 
 <%= link_to 'Edit', edit_code_path(@code) %> |

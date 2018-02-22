@@ -38,6 +38,8 @@ class CodeImageUploader < CarrierWave::Uploader::Base
     process crop: "530x530+70+230"
   end
 
+  version :composite
+
   # Add a white list of extensions which are allowed to be uploaded.
   # For images you might use something like this:
   def extension_whitelist

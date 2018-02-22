@@ -10,6 +10,43 @@ class CodesController < ApplicationController
   # GET /codes/1
   # GET /codes/1.json
   def show
+    require "mini_magick"
+
+    @codeimage = @code.image
+    croppedcode = @codeimage.cropped
+    compositecode = @codeimage.composite
+    base = Base.last.image
+
+    newimage = MiniMagick::Image.open(root_url + croppedcode.url)
+    baseimage = MiniMagick::Image.open(root_url + base.url)
+    newimage.rotate("-10")
+
+    newimage = baseimage.composite(newimage) do |c|
+      c.compose("Darken")
+      c.geometry("200x200+215+70")
+      c.gravity("southeast")
+    end
+
+    codedirsplit = @codeimage.url.split("/")
+    filename = codedirsplit.pop(1)[0]
+
+    compositecodesplit = compositecode.url.split("/")
+    compositefilename = compositecodesplit.pop(1)[0]
+
+    codedir = codedirsplit.join("/").concat("/")
+
+    # @newimage.write("public/" + @code.url)
+    newimage.write("public" + @codeimage.composite.url)
+
+    @code.composited = true
+    @code.save!
+
+    if Code.count > 1
+      Code.first.delete
+    end
+
+    redirect_to root_url
+
   end
 
   # GET /codes/new
@@ -62,10 +99,33 @@ class CodesController < ApplicationController
   end
 
   def merged
-    @code = Code.find(params[:id]).image.cropped
-    @baseimage = Base.last
+    require "mini_magick"
 
-    newimage = MiniMagick::Image.open(root_url + @code.url)
+    @code = Code.find(params[:id]).image
+    croppedcode = @code.cropped
+    compositecode = @code.composite
+    base = Base.last.image
+
+    newimage = MiniMagick::Image.open(root_url + croppedcode.url)
+    baseimage = MiniMagick::Image.open(root_url + base.url)
+    newimage.rotate("-10")
+
+    newimage = baseimage.composite(newimage) do |c|
+      c.compose("Darken")
+      c.geometry("200x200+215+70")
+      c.gravity("southeast")
+    end
+
+    codedirsplit = @code.url.split("/")
+    filename = codedirsplit.pop(1)[0]
+
+    compositecodesplit = compositecode.url.split("/")
+    compositefilename = compositecodesplit.pop(1)[0]
+
+    codedir = codedirsplit.join("/").concat("/")
+
+    # @newimage.write("public/" + @code.url)
+    newimage.write("public" + @code.composite.url)
 
   end
 

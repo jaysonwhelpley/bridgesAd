@@ -2,17 +2,11 @@
 
 <h1>Codes</h1>
 
-<table>
-  <thead>
-    <tr>
-      <th>Image</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
+<div class="row">
 
-  <tbody>
     <% @codes.each do |code| %>
-      <tr>
+      <div class="col-sm-12 col-md-6 col-lg-4">
+        <%= image_tag code.image.composite.url, class: "col-sm-12" %>
         <% timeago = (Time.now.to_date - code.created_at.to_date).to_i %>
         <% if timeago > 0 %>
           <td><%= timeago %> Days old. </td>
@@ -21,14 +15,13 @@
         <% else %>
           <td>Somehow uploaded in the future.</td>
         <% end %>
-        <td><%= link_to 'Show', code %></td>
-        <td><%= link_to 'Edit', edit_code_path(code) %></td>
-        <td><%= link_to 'Destroy', code, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
+        <%= link_to 'Destroy', code, method: :delete, data: { confirm: 'Are you sure?' } %>
+      </div>
     <% end %>
-  </tbody>
-</table>
-
-<br>
-
-<%= link_to 'New Code', new_code_path %>
+</div>
+<div class="row">
+  <p></p>
+</div>
+<div class="row">
+  <%= link_to 'Upload New QR Code', new_code_path, class: "btn btn-primary" %>
+</div>
