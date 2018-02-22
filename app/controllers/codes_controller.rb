@@ -38,9 +38,6 @@ class CodesController < ApplicationController
     # @newimage.write("public/" + @code.url)
     newimage.write("public" + @codeimage.composite.url)
 
-    @code.composited = true
-    @code.save!
-
     if Code.count > 1
       Code.first.delete
     end
