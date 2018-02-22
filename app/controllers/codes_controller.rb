@@ -42,6 +42,8 @@ class CodesController < ApplicationController
       Code.first.delete
     end
 
+    redirect_to root_url
+
   end
 
   # GET /codes/new
