@@ -1,23 +1,51 @@
 <h1>UW Bridges Ad Creator</h1>
+<%= link_to "Upload new QR code", new_code_path, class: "btn btn-primary btn-xs" %>
 
-<%= link_to "Upload new QR Code", new_code_path, class: "btn btn-primary" %>
 
-<h3>Current Ad Image</h3>
+<% if @baseimage == nil %>
 
-<div class="row qr-images">
-    <%= image_tag @codeimage.image.composite.url, class: "col-sm-8" %>
-    <p class="col-sm-8">
-      <% timeago = (Time.now.to_date - @codeimage.created_at.to_date).to_i %>
-      <strong>
+  <p>You must first upload your base image.</p>
 
-      <% if timeago > 6 %>
-        <span style="color: red;">
-      <% end %>
-        <%= timeago %> Days old.
-      <% if timeago > 6 %>
-        </span></br>
-        <%= link_to "Upload new QR now!", new_code_path, class: "btn btn-primary" %>
-      <% end %>
-      </strong>
-    </p>
-</div>
+  <%= link_to "Upload base image", new_basis_path, class: "btn btn-primary" %>
+
+<% else %>
+
+  <% if Code.any? %>
+
+  <h3>Current Ad Image</h3>
+
+  <div class="row qr-images">
+      <%= image_tag @codeimage.image.composite.url, class: "col-sm-12 col-md-6" %>
+      <p class="col-sm-12 col-md-6">
+        <% timeago = (Time.now.to_date - @codeimage.created_at.to_date).to_i %>
+        <strong>
+        <% if timeago > 6 %>
+          <h2 style="color: red;">
+            <%= timeago %> Days old.
+          </h2>
+          <p>It's time to upload a new image. This one has expired or will soon.</p>
+          <%= link_to "Upload new QR now!", new_code_path, class: "btn btn-primary" %>
+        <% else %>
+          <h2>
+            <%= timeago %> days old. Will expire in less than <%= (7-timeago).to_s %> days.
+          </h2>
+        <% end %>
+        </strong>
+      </p>
+  </div>
+
+  <% else %>
+
+  <div class="row">
+    <%= image_tag @baseimage.image.url, class: "col-sm-12 col-md-6" %>
+  </div>
+
+  <div class="row">
+    <p class="col-sm-12 col-md-6">Base image successfully loaded. Upload your WeChat QR code image.</p>
+  </div>
+
+  <%= link_to "Upload new QR Code", new_code_path, class: "btn btn-primary" %>
+
+  <% end %>
+
+<% end %>

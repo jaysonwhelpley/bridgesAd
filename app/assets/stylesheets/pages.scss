@@ -9,3 +9,11 @@
 .qr-image {
   width: 100%
 }
+
+a.btn-primary {
+  color: white;
+
+  &:visited {
+    color: white
+  }
+}

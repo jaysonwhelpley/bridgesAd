@@ -57,7 +57,8 @@ group :development do
   gem 'spring-watcher-listen', '~> 2.0.0'
   gem 'irbtools', require: 'irbtools/binding'
   gem 'irbtools-more', require: 'irbtools/binding'
-
+  gem 'seed_dump'
+  
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem

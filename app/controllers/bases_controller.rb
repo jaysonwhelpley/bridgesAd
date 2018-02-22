@@ -10,6 +10,7 @@ class BasesController < ApplicationController
   # GET /bases/1
   # GET /bases/1.json
   def show
+    redirect_to root_url
   end
 
   # GET /bases/new
