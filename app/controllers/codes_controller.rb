@@ -10,39 +10,31 @@ class CodesController < ApplicationController
   # GET /codes/1
   # GET /codes/1.json
   def show
-    require "mini_magick"
-
-    @codeimage = @code.image
-    croppedcode = @codeimage.cropped
-    compositecode = @codeimage.composite
-    base = Base.last.image
-
-    newimage = MiniMagick::Image.open(croppedcode.url)
-    baseimage = MiniMagick::Image.open(base.url)
-    newimage.rotate("-10")
-
-    newimage = baseimage.composite(newimage) do |c|
-      c.compose("Darken")
-      c.geometry("200x200+215+70")
-      c.gravity("southeast")
-    end
-
-    # codedirsplit = @codeimage.url.split("/")
-    # filename = codedirsplit.pop(1)[0]
+    # require "mini_magick"
     #
-    # compositecodesplit = compositecode.url.split("/")
-    # compositefilename = compositecodesplit.pop(1)[0]
+    # @codeimage = @code.image
+    # croppedcode = @codeimage.cropped
+    # compositecode = @codeimage.composite
+    # base = Base.last.image
     #
-    # codedir = codedirsplit.join("/").concat("/")
+    # newimage = MiniMagick::Image.open(croppedcode.url)
+    # baseimage = MiniMagick::Image.open(base.url)
+    # newimage.rotate("-10")
+    #
+    # newimage = baseimage.composite(newimage) do |c|
+    #   c.compose("Darken")
+    #   c.geometry("200x200+215+70")
+    #   c.gravity("southeast")
+    # end
 
-    # @newimage.write("public/" + @code.url)
-    newimage.write(@codeimage.composite.url)
 
-    if Code.count > 1
-      Code.first.delete
-    end
+    # newimage.write(@codeimage.composite.url)
 
-    redirect_to root_url
+    # if Code.count > 1
+    #   Code.first.delete
+    # end
+
+    # redirect_to root_url
 
   end
 

@@ -38,7 +38,10 @@ class CodeImageUploader < CarrierWave::Uploader::Base
     process crop: "530x530+70+230"
   end
 
-  version :composite
+
+  version :composite do
+    process :compositing
+  end
 
   # Add a white list of extensions which are allowed to be uploaded.
   # For images you might use something like this:
@@ -57,8 +60,24 @@ class CodeImageUploader < CarrierWave::Uploader::Base
   # Simplest way
   def crop(geometry)
     manipulate! do |img|
-      img.crop(geometry)
-      img
+
+      base = Base.last.image.url
+      baseimage = MiniMagick::Image.open(base.url)
+
+      img.rotate("-10")
+
+      img = baseimage.composite(img) do |c|
+        c.compose("Darken")
+        c.geometry("200x200+215+70")
+        c.gravity("southeast")
+      end
+
+    end
+  end
+
+  def compositing
+    manipulate! do |img|
+      img =
     end
   end
 
