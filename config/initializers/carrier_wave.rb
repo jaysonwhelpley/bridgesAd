@@ -3,7 +3,6 @@
 
 CarrierWave.configure do |config|
   if Rails.env.test?
-    config.storage :file
     config.asset_host = 'http://localhost:3000'
   else
     # Configuration for Amazon S3 should be made available through an Environment variable.
