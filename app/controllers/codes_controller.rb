@@ -27,16 +27,16 @@ class CodesController < ApplicationController
       c.gravity("southeast")
     end
 
-    codedirsplit = @codeimage.url.split("/")
-    filename = codedirsplit.pop(1)[0]
-
-    compositecodesplit = compositecode.url.split("/")
-    compositefilename = compositecodesplit.pop(1)[0]
-
-    codedir = codedirsplit.join("/").concat("/")
+    # codedirsplit = @codeimage.url.split("/")
+    # filename = codedirsplit.pop(1)[0]
+    #
+    # compositecodesplit = compositecode.url.split("/")
+    # compositefilename = compositecodesplit.pop(1)[0]
+    #
+    # codedir = codedirsplit.join("/").concat("/")
 
     # @newimage.write("public/" + @code.url)
-    newimage.write("public" + @codeimage.composite.url)
+    newimage.write(@codeimage.composite.url)
 
     if Code.count > 1
       Code.first.delete
@@ -113,16 +113,8 @@ class CodesController < ApplicationController
       c.gravity("southeast")
     end
 
-    codedirsplit = @code.url.split("/")
-    filename = codedirsplit.pop(1)[0]
-
-    compositecodesplit = compositecode.url.split("/")
-    compositefilename = compositecodesplit.pop(1)[0]
-
-    codedir = codedirsplit.join("/").concat("/")
-
     # @newimage.write("public/" + @code.url)
-    newimage.write("public" + @code.composite.url)
+    newimage.write(@code.composite.url)
 
   end
 
