@@ -9,6 +9,7 @@ class CodesController < ApplicationController
 
   # GET /codes/1
   # GET /codes/1.json
+
   def show
     # require "mini_magick"
     #
@@ -30,11 +31,13 @@ class CodesController < ApplicationController
 
     # newimage.write(@codeimage.composite.url)
 
-    # if Code.count > 1
-    #   Code.first.delete
-    # end
+    if Code.count > 1
+      if Code.first.create_at < 7.days.ago
+        Code.first.delete
+      end
+    end
 
-    # redirect_to root_url
+    redirect_to root_url
 
   end
 
