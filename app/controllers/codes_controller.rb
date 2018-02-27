@@ -32,7 +32,7 @@ class CodesController < ApplicationController
     # newimage.write(@codeimage.composite.url)
 
     if Code.count > 1
-      if Code.first.create_at < 7.days.ago
+      if Code.first.created_at < 7.days.ago
         Code.first.delete
       end
     end
