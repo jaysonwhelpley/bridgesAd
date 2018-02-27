@@ -71,6 +71,7 @@ class CodeImageUploader < CarrierWave::Uploader::Base
       base = Base.last.image.url
       baseimage = MiniMagick::Image.open(base)
 
+      img.crop("530x530+70+230")
       img.rotate("-10")
 
       img = baseimage.composite(img) do |c|
