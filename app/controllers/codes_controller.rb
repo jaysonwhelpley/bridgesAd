@@ -17,8 +17,8 @@ class CodesController < ApplicationController
     compositecode = @codeimage.composite
     base = Base.last.image
 
-    newimage = MiniMagick::Image.open(root_url + croppedcode.url)
-    baseimage = MiniMagick::Image.open(root_url + base.url)
+    newimage = MiniMagick::Image.open(croppedcode.url)
+    baseimage = MiniMagick::Image.open(base.url)
     newimage.rotate("-10")
 
     newimage = baseimage.composite(newimage) do |c|
@@ -103,8 +103,8 @@ class CodesController < ApplicationController
     compositecode = @code.composite
     base = Base.last.image
 
-    newimage = MiniMagick::Image.open(root_url + croppedcode.url)
-    baseimage = MiniMagick::Image.open(root_url + base.url)
+    newimage = MiniMagick::Image.open(croppedcode.url)
+    baseimage = MiniMagick::Image.open(base.url)
     newimage.rotate("-10")
 
     newimage = baseimage.composite(newimage) do |c|
