@@ -37,7 +37,8 @@ gem 'jbuilder', '~> 2.5'
 # gem 'capistrano-rails', group: :development
 
 gem "mini_magick"
-gem 'carrierwave', '~> 1.0'
+gem 'carrierwave', '~> 1.2.1'
+gem 'fog-aws'
 
 
 group :development, :test do
@@ -58,7 +59,7 @@ group :development do
   gem 'irbtools', require: 'irbtools/binding'
   gem 'irbtools-more', require: 'irbtools/binding'
   gem 'seed_dump'
-  
+
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
