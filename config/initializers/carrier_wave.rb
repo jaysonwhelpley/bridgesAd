@@ -16,7 +16,7 @@ CarrierWave.configure do |config|
 
     # Configuration for Amazon S3
 
-    config.storage = :fog
+
     config.fog_use_ssl_for_aws = true
     config.fog_directory  = ENV['FOG_DIRECTORY']
     config.fog_public     = true
@@ -30,5 +30,7 @@ CarrierWave.configure do |config|
       aws_secret_access_key:  ENV['AWS_SECRET_ACCESS_KEY'],
       path_style:             ENV['FOG_PATH_STYLE']
     }
+
+    config.storage = :fog
   end
 end
