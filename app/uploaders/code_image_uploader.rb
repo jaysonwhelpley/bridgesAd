@@ -60,6 +60,13 @@ class CodeImageUploader < CarrierWave::Uploader::Base
   # Simplest way
   def crop(geometry)
     manipulate! do |img|
+      img.crop(geometry)
+      img
+    end
+  end
+
+  def compositing
+    manipulate! do |img|
 
       base = Base.last.image.url
       baseimage = MiniMagick::Image.open(base.url)
@@ -72,12 +79,6 @@ class CodeImageUploader < CarrierWave::Uploader::Base
         c.gravity("southeast")
       end
 
-    end
-  end
-
-  def compositing
-    manipulate! do |img|
-      img =
     end
   end
 
