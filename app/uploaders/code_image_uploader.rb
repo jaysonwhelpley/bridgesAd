@@ -6,7 +6,7 @@ class CodeImageUploader < CarrierWave::Uploader::Base
 
   # Choose what kind of storage to use for this uploader:
   # storage :file
-  storage :fog
+  # storage :fog
 
   # Override the directory where uploaded files will be stored.
   # This is a sensible default for uploaders that are meant to be mounted:
@@ -40,7 +40,7 @@ class CodeImageUploader < CarrierWave::Uploader::Base
 
 
   version :composite do
-    process :compositing
+    process :overlay
   end
 
   # Add a white list of extensions which are allowed to be uploaded.
@@ -65,7 +65,7 @@ class CodeImageUploader < CarrierWave::Uploader::Base
     end
   end
 
-  def compositing
+  def overlay
     manipulate! do |img|
 
       base = Base.last.image.url

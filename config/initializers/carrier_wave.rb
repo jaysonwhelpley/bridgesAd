@@ -4,6 +4,9 @@
 CarrierWave.configure do |config|
   if Rails.env.test?
     config.asset_host = 'http://localhost:3000'
+  elsif Rails.env.development?
+    config.storage = :file
+    config.enable_processing = true
   else
     # Configuration for Amazon S3 should be made available through an Environment variable.
     # For local installations, export the env variable through the shell OR
