@@ -69,7 +69,7 @@ class CodeImageUploader < CarrierWave::Uploader::Base
     manipulate! do |img|
 
       base = Base.last.image.url
-      baseimage = MiniMagick::Image.open(base.url)
+      baseimage = MiniMagick::Image.open(base)
 
       img.rotate("-10")
 
