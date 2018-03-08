@@ -100,11 +100,11 @@ class CodesController < ApplicationController
 
     newimage = MiniMagick::Image.open(croppedcode.url)
     baseimage = MiniMagick::Image.open(base.url)
-    newimage.rotate("-10")
 
     newimage = baseimage.composite(newimage) do |c|
       c.compose("Darken")
       c.geometry("200x200")
+      c..rotate("-10")
       c.gravity("southeast")
     end
 
