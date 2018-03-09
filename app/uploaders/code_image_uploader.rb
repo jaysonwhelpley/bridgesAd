@@ -34,9 +34,9 @@ class CodeImageUploader < CarrierWave::Uploader::Base
     process resize_to_fit: [50, 50]
   end
 
-  version :cropped do
-    process crop: "530x530+70+230"
-  end
+  # version :cropped do
+  #   process crop: "530x530+70+230"
+  # end
 
 
   version :composite do

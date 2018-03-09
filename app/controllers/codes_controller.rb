@@ -98,7 +98,7 @@ class CodesController < ApplicationController
     compositecode = @code.composite
     base = Base.last.image
 
-    newimage = MiniMagick::Image.open(croppedcode.url)
+    newimage = MiniMagick::Image.open(@code.url)
     baseimage = MiniMagick::Image.open(base.url)
 
     newimage = baseimage.composite(newimage) do |c|
