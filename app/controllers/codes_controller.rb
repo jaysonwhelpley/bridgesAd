@@ -90,28 +90,6 @@ class CodesController < ApplicationController
     end
   end
 
-  def merged
-    require "mini_magick"
-
-    @code = Code.find(params[:id]).image
-    croppedcode = @code.cropped
-    compositecode = @code.composite
-    base = Base.last.image
-
-    newimage = MiniMagick::Image.open(@code.url)
-    baseimage = MiniMagick::Image.open(base.url)
-
-    newimage = baseimage.composite(newimage) do |c|
-      # c.rotate("-10")
-      # c.compose("Darken")
-      # c.geometry("200x200+215+70")
-      # c.gravity("southeast")
-    end
-
-    # @newimage.write("public/" + @code.url)
-    newimage.write(@code.composite.url)
-
-  end
 
   private
     # Use callbacks to share common setup or constraints between actions.
