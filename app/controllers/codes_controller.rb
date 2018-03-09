@@ -102,10 +102,10 @@ class CodesController < ApplicationController
     baseimage = MiniMagick::Image.open(base.url)
 
     newimage = baseimage.composite(newimage) do |c|
-      c.rotate("-10")
-      c.compose("Darken")
-      c.geometry("200x200+215+70")
-      c.gravity("southeast")
+      # c.rotate("-10")
+      # c.compose("Darken")
+      # c.geometry("200x200+215+70")
+      # c.gravity("southeast")
     end
 
     # @newimage.write("public/" + @code.url)
