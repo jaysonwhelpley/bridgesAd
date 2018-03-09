@@ -104,7 +104,7 @@ class CodesController < ApplicationController
     newimage = baseimage.composite(newimage) do |c|
       c.rotate("-10")
       c.compose("Darken")
-      c.geometry("300x300+315+70")
+      c.geometry("200x200+215+70")
       c.gravity("southeast")
     end
 
