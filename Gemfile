@@ -41,6 +41,8 @@ gem 'carrierwave', '~> 1.2.1'
 gem 'fog-aws'
 gem 'aws-sdk', '~> 2'
 
+gem 'sprockets', '~>3.7.2'
+
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
